@@ -2,13 +2,13 @@
 
 <img src="./teaser.png" width="800" alt="Example"/>
 
-**Unsupervised Person Image Generation with Semantic Parsing Transformation** <br>(CVPR 2019, oral).
+### Unsupervised Person Image Generation with Semantic Parsing Transformation <br>(CVPR 2019, oral).
 
 [Sijie Song](https://sijiesong.github.io/), [Wei Zhang](https://wzhang34.github.io/), [Jiaying Liu](http://icst.pku.edu.cn/struct/people/liujiaying.html), [Tao Mei](https://taomei.me/)
 
 Project page: http://39.96.165.147/Projects/SijieSong_cvpr19/CVPR19_ssj.html
 
-[Paper](<https://arxiv.org/abs/1904.03379> )  [Supp](<http://39.96.165.147/Projects/SijieSong_cvpr19/files/supp.pdf>)
+Check our our [paper](<https://arxiv.org/abs/1904.03379> )  and  [supplementary](<http://39.96.165.147/Projects/SijieSong_cvpr19/files/supp.pdf>) here.
 
 ### Prerequisites
 
@@ -42,7 +42,7 @@ cd person_generation_spt
 
 * Check the results in ./results/demo_test
 
-  <img src='./results/demo_test/1_A.jpg_1_B.jpg.png' width=400 alt="Example"/>
+  <img src='./results/demo_test/2_A.jpg_2_B.jpg.png' width=400 alt="Example"/>
 
   
 
