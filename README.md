@@ -40,7 +40,7 @@ cd person_generation_spt
   bash ./scripts/test_demo.sh
   ```
 
-* Check the results in ./results/demo_test
+* Check the results in ./results/demo_test (source image | target pose (groud truth) | output)
 
   <img src='./results/demo_test/2_A.jpg_2_B.jpg.png' width=400 alt="Example"/>
 
