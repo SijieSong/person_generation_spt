@@ -36,9 +36,9 @@ cd person_generation_spt
 
 * Quick testing (modify the gpu_id in ./scripts/test_demo.sh if needed)
 
-  ```
-  bash ./scripts/test_demo.sh
-  ```
+```
+bash ./scripts/test_demo.sh
+```
 
 * Check the results in ./results/demo_test (source image | target pose (groud truth) | output)
 
