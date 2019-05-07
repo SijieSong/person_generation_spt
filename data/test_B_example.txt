@@ -1,3 +1,2 @@
-./imgs/1_B.jpg
 ./imgs/2_B.jpg
 ./imgs/3_B.jpg
