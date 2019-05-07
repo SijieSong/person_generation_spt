@@ -12,7 +12,7 @@ Check our our [paper](<https://arxiv.org/abs/1904.03379> )  and  [supplementary]
 
 ### Prerequisites
 
-* Python 2 (Python 3 also should work, but needs some modification)
+* Python 2 (Python 3 should also work, but needs some modification)
 * Pytorch >= 0.4.0
 * opencv-python
 * Numpy
@@ -36,11 +36,11 @@ cd person_generation_spt
 
 * Quick testing (modify the gpu_id in ./scripts/test_demo.sh if needed)
 
-  ```
-  bash ./scripts/test_demo.sh
-  ```
+```
+bash ./scripts/test_demo.sh
+```
 
-* Check the results in ./results/demo_test
+* Check the results in ./results/demo_test (source image | target pose (groud truth) | output)
 
   <img src='./results/demo_test/2_A.jpg_2_B.jpg.png' width=400 alt="Example"/>
 
