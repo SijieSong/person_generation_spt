@@ -12,7 +12,7 @@ Check our our [paper](<https://arxiv.org/abs/1904.03379> )  and  [supplementary]
 
 ### Prerequisites
 
-* Python 2 (Python 3 also should work, but needs some modification)
+* Python 2 (Python 3 should also work, but needs some modification)
 * Pytorch >= 0.4.0
 * opencv-python
 * Numpy
