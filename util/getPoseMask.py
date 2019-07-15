@@ -1,6 +1,6 @@
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
+
+
+
 
 import math
 import os
@@ -59,7 +59,7 @@ def getPoseMask(peaks, height, width, radius=4, var=4, mode='Solid'):
             distance = np.sqrt((r0-r1)**2 + (c0-c1)**2)
             sampleN = int(distance/radius)
             if sampleN>1:
-                for i in xrange(1,sampleN):
+                for i in range(1,sampleN):
                     r = r0 + (r1-r0)*i/sampleN
                     c = c0 + (c1-c0)*i/sampleN
                     ind, val = getSparseKeypoint(r, c, 0, height, width, radius, var, mode)

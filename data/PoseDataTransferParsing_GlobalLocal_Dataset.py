@@ -32,16 +32,20 @@ class PoseDataset(BaseDataset):
         if self.opt.isTrain:
             f_A = open('./data/train_A_parsing.txt','r')
             f_B = open('./data/train_B_parsing.txt','r')
-            self.A_paths = [_.split('\r\n')[0] for _ in f_A.readlines()]
-            self.B_paths = [_.split('\r\n')[0] for _ in f_B.readlines()]
+            #self.A_paths = [_.split('\r\n')[0] for _ in f_A.readlines()]
+            #self.B_paths = [_.split('\r\n')[0] for _ in f_B.readlines()]
+            self.A_paths = [_.strip('\n') for _ in f_A.readlines()]
+            self.B_paths = [_.strip('\n') for _ in f_B.readlines()]
             f_A.close()
             f_B.close()
 
         else:
             f_A = open('./data/test_A_example.txt', 'r')
             f_B = open('./data/test_B_example.txt', 'r')
-            self.A_paths = [_.split('\r\n')[0] for _ in f_A.readlines()]
-            self.B_paths = [_.split('\r\n')[0] for _ in f_B.readlines()]
+            #self.A_paths = [_.split('\r\n')[0] for _ in f_A.readlines()]
+            #self.B_paths = [_.split('\r\n')[0] for _ in f_B.readlines()]
+            self.A_paths = [_.strip('\n') for _ in f_A.readlines()]
+            self.B_paths = [_.strip('\n') for _ in f_B.readlines()]
             f_A.close()
             f_B.close()
 
@@ -75,7 +79,7 @@ class PoseDataset(BaseDataset):
 
     def downsample_pose_array(self, input_array):
         kp_array = input_array.copy()
-        for idx in xrange(18):
+        for idx in range(18):
             if kp_array[idx,0] != -1 and kp_array[idx,1] != -1 :
                 kp_array[idx,0] = int(kp_array[idx,0] * 0.5)
                 kp_array[idx,1] = int(kp_array[idx,1] * 0.5)
@@ -92,7 +96,7 @@ class PoseDataset(BaseDataset):
             index_B = random.randint(0, self.B_size - 1)
         B_path = self.B_paths[index_B]
 
-        print('(A, B) = (%d, %d)' % (index, index_B))
+        print(('(A, B) = (%d, %d)' % (index, index_B)))
         A_img = Image.open(A_path).convert('RGB')
         B_img = Image.open(B_path).convert('RGB')
 
@@ -154,7 +158,7 @@ class PoseDataset(BaseDataset):
 	# A_parsing_file = '/data/songsijie/deepfashion_parsing/merge_parsing/' + A_img_name.split('.jpg')[0] + '.npy'
         A_parsing_data = numpy.load(A_parsing_file)
         A_parsing = numpy.zeros((9,256,256),dtype='int8')
-        for id in xrange(9):
+        for id in range(9):
             A_parsing[id] = (A_parsing_data == id+1).astype('int8')
 
 
@@ -162,13 +166,13 @@ class PoseDataset(BaseDataset):
         # B_parsing_file = '/data/songsijie/deepfashion_parsing/merge_parsing/' + B_img_name.split('.jpg')[0] + '.npy'
         B_parsing_data = numpy.load(B_parsing_file)
         B_parsing = numpy.zeros((9,256,256),dtype='int8')
-        for id in xrange(9):
+        for id in range(9):
             B_parsing[id] = (B_parsing_data == id+1).astype('int8')
 
 
         ####Downsample A_parsing & B_parsing
         # the parsing size became 9 x 128 x 128 
-        [X, Y] = numpy.meshgrid(range(0,256,2),range(0,256,2))
+        [X, Y] = numpy.meshgrid(list(range(0,256,2)),list(range(0,256,2)))
         downsample_A_parsing = A_parsing[:,Y,X]
         downsample_B_parsing = B_parsing[:,Y,X]
 
