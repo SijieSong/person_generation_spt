@@ -29,7 +29,7 @@ def init_weights(net, init_type='normal', gain=0.02):
             init.normal_(m.weight.data, 1.0, gain)
             init.constant_(m.bias.data, 0.0)
 
-    print('initialize network with %s' % init_type)
+    print(('initialize network with %s' % init_type))
     net.apply(init_func)
 
 
@@ -143,11 +143,11 @@ class local_encoder(nn.Module):
         for i, nf in enumerate(nfilters_enc):
             if i == 0:
                 # input_nc -> 64/2 = 32
-                model.append(nn.Conv2d(input_nc, nf/2, kernel_size=3, padding=1, bias=True))
+                model.append(nn.Conv2d(input_nc, nf//2, kernel_size=3, padding=1, bias=True))
             # different from the global encoder, the last layer before the global encoder is after BN
             else:
                 # 64/2 -> 128/2 => 32 -> 64 
-                model.append(Block(nfilters_enc[i - 1]/2, nf/2))
+                model.append(Block(nfilters_enc[i - 1]//2, nf//2))
         return nn.ModuleList(model)
 
     def forward(self, input):
@@ -206,7 +206,7 @@ class decoder(nn.Module):
                 # final processing, upsampling
                 out = torch.cat([out, skips[-(i+1)]], 1)
                 # (128 + 64 + 64)  x 128 x 128 -> (128 + 64 + 64) x 256 x 256
-         	out = self.upsampling(out)       
+                out = self.upsampling(out)       
                 out = self.net[i](out)
                 # 3 x 256 x 256
                 out = self.net[i+1](out)
@@ -232,11 +232,11 @@ class local_decoder(nn.Module):
         for i, nf in enumerate(nfilters_dec):
             if i==0:
                 # Input: (64 + 64 + 128) x 128 x 128 -> Output: 128/2 x 256 x 256
-                model_dec.append(Block((self.num_skips)*self.nfilters_enc[1]/2 + nfilters_dec[i], nf/2, down=False, leaky=False))          
+                model_dec.append(Block((self.num_skips)*self.nfilters_enc[1]//2 + nfilters_dec[i], nf//2, down=False, leaky=False))          
             elif i==len(nfilters_dec)-1:
                 # Input: (32 + 32 + 64) x 256 x 256 -> Ouptut: 3 x 256 x 256
                 model_dec.append(nn.ReLU())
-                model_dec.append(nn.Conv2d((self.num_skips)*self.nfilters_enc[0]/2 + nfilters_dec[i - 1]/2, nf, kernel_size=3, padding=1, bias=True))
+                model_dec.append(nn.Conv2d((self.num_skips)*self.nfilters_enc[0]//2 + nfilters_dec[i - 1]//2, nf, kernel_size=3, padding=1, bias=True))
         model_dec.append(nn.Tanh())
 
         return nn.ModuleList(model_dec)

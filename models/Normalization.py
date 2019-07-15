@@ -1,8 +1,6 @@
 import torch
 import torch.nn as nn
 
-
-
 # create a module to normalize input image so we can easily put it in a
 # nn.Sequential
 def normalization_model(mean, std, gpu_ids=[]):
@@ -10,9 +8,9 @@ def normalization_model(mean, std, gpu_ids=[]):
     #std = torch.tensor(std).to(gpu_ids[0])
     model = Normalization(mean, std)
     if len(gpu_ids) > 0:
-	assert(torch.cuda.is_available())
-	model.to(gpu_ids[0])
-	model = torch.nn.DataParallel(model, gpu_ids)	
+        assert(torch.cuda.is_available())
+    model.to(gpu_ids[0])
+    model = torch.nn.DataParallel(model, gpu_ids)   
     return model
 
 class Normalization(nn.Module):

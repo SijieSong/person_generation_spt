@@ -10,9 +10,9 @@ import sys
 import itertools
 from .base_model import BaseModel
 from . import networks
-from VGG_multi import VGG16, vgg_model
-from Normalization import Normalization, normalization_model
-from GramMatrix_bodypart import patch_gram_matrix
+from .VGG_multi import VGG16, vgg_model
+from .Normalization import Normalization, normalization_model
+from .GramMatrix_bodypart import patch_gram_matrix
 from models import GlobalLocalPRDemo_models as GlobalLocal_models
 from util.pose_transform import AffineTransformLayer
 
@@ -38,7 +38,7 @@ class PoseGuidedGenerationDemoModel(BaseModel):
 
         if isinstance(net, torch.nn.DataParallel):
             net = net.module
-        print('loading the pose det model from %s' % load_path)
+        print(('loading the pose det model from %s' % load_path))
 
         # if you are using PyTorch newer than 0.4 (e.g., built from
         # GitHub source), you can remove str() on self.device
@@ -66,7 +66,7 @@ class PoseGuidedGenerationDemoModel(BaseModel):
             
             model_dict = net.state_dict()         
 
-            print('loading the Discriminator from %s' % load_path)
+            print(('loading the Discriminator from %s' % load_path))
             # if you are using PyTorch newer than 0.4 (e.g., built from
             # GitHub source), you can remove str() on self.device
             state_dict = torch.load(load_path, map_location=str(self.device))
@@ -76,9 +76,9 @@ class PoseGuidedGenerationDemoModel(BaseModel):
             for key in list(state_dict.keys()):  # need to copy keys here because we mutate in loop
                 self.__patch_instance_norm_state_dict(state_dict, net, key.split('.'))
 
-            for k, v in state_dict.items():                
+            for k, v in list(state_dict.items()):                
                 if k in model_dict:
-                    print('loading...%s'%k)
+                    print(('loading...%s'%k))
                     model_dict[k] = v
 
             net.load_state_dict(model_dict)
@@ -95,10 +95,10 @@ class PoseGuidedGenerationDemoModel(BaseModel):
             pretrained_dict = torch.load(save_path)                
             model_dict = network.state_dict()         
 
-            for k, v in pretrained_dict.items():
+            for k, v in list(pretrained_dict.items()):
                 kk = 'model_global.' + k                    
                 if kk in model_dict:
-                    print('loading...%s'%kk)
+                    print(('loading...%s'%kk))
                     model_dict[kk] = v
 
             if sys.version_info >= (3,0):
@@ -107,12 +107,12 @@ class PoseGuidedGenerationDemoModel(BaseModel):
                 from sets import Set
                 not_initialized = Set()                    
 
-            for k, v in model_dict.items():
+            for k, v in list(model_dict.items()):
                 kk = '.'.join(k.split('model_global.')[1:])
                 if kk not in pretrained_dict or v.size() != pretrained_dict[kk].size():
                     not_initialized.add(k)
-            print('Pretrained network %s has fewer layers; The following are not initialized:' % network_label)
-            print(sorted(not_initialized))
+            print(('Pretrained network %s has fewer layers; The following are not initialized:' % network_label))
+            print((sorted(not_initialized)))
             network.load_state_dict(model_dict)        
 
     def initialize(self, opt):
@@ -206,12 +206,12 @@ class PoseGuidedGenerationDemoModel(BaseModel):
                     from sets import Set
                     finetune_list = Set()
                 params_dict = dict(self.netG.named_parameters())
-                for key, value in params_dict.items():
+                for key, value in list(params_dict.items()):
                     if key.find('model_global') == -1:
                         params += [value]
                         finetune_list.add(key)
-                print('-----only training the local generator network for %d epochs-----'%opt.niter_fix_global)
-                print('The layers that are finetuned are ', sorted(finetune_list))
+                print(('-----only training the local generator network for %d epochs-----'%opt.niter_fix_global))
+                print(('The layers that are finetuned are ', sorted(finetune_list)))
 
             else:
                 params = list(self.netG.parameters())

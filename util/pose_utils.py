@@ -156,7 +156,7 @@ if __name__ == "__main__":
         colors, mask = draw_pose_from_cords(pose_cords, (128, 64))
 
         mmm = produce_ma_mask(pose_cords, (128, 64)).astype(float)[..., np.newaxis].repeat(3, axis=-1)
-        print mmm.shape
+        print(mmm.shape)
         img = imread('data/market-dataset/train/' + row['name'])
 
         mmm[mask] = colors[mask]

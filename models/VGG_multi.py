@@ -45,9 +45,9 @@ class VGG16(torch.nn.Module):
 def vgg_model(gpu_ids=[]):
     model = VGG16()
     if len(gpu_ids) > 0:
-	assert(torch.cuda.is_available())
-	model.to(gpu_ids[0])
-	model = torch.nn.DataParallel(model, gpu_ids)
+        assert(torch.cuda.is_available())
+    model.to(gpu_ids[0])
+    model = torch.nn.DataParallel(model, gpu_ids)
     return model
 
 if __name__ == '__main__':
