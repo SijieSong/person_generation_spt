@@ -32,7 +32,7 @@ git clone https://github.com/SijieSong/person_generation_spt.git
 cd person_generation_spt
 ```
 
-* Download pre-trained models from [Google Drive](https://drive.google.com/file/d/1261KP99IVV6kTy6cQ3nbUuqc8ZG32jrV/view?usp=sharing), put ./demo_model under ./checkpoints
+* Download pre-trained models from [Google Drive](https://drive.google.com/file/d/1261KP99IVV6kTy6cQ3nbUuqc8ZG32jrV/view?usp=sharing) or [Baidu Yun](https://pan.baidu.com/s/15PCwbr4ayFcxnKlArwHjgw), put ./demo_model under ./checkpoints
 
 * Quick testing (modify the gpu_id in ./scripts/test_demo.sh if needed)
 
