@@ -44,7 +44,10 @@ bash ./scripts/test_demo.sh
 
   <img src='./results/demo_test/2_A.jpg_2_B.jpg.png' width=400 alt="Example"/>
 
-  
+* testing a new image
+  You can test a new image with pre-defined parsing files (see the example in ./parsing). The id for each attribute label is defined as below:
+  0-background, 1-face, 2-hair, 3-upperclothes, 4-pants, 5-skirt, 6-leftArm, 7-rightArm, 8-leftLeg, 9-rightLeg.
+
 
 ### Citation
 
