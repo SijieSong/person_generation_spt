@@ -8,7 +8,7 @@
 
 Project page: http://39.96.165.147/Projects/SijieSong_cvpr19/CVPR19_ssj.html
 
-Check our our [paper](<https://arxiv.org/abs/1904.03379> )  and  [supplementary](<http://39.96.165.147/Projects/SijieSong_cvpr19/files/supp.pdf>) here.
+Check out our [paper](<https://arxiv.org/abs/1904.03379> )  and  [supplementary](<http://39.96.165.147/Projects/SijieSong_cvpr19/files/supp.pdf>) here.
 
 ### Prerequisites
 
