@@ -1,4 +1,4 @@
-from __future__ import print_function
+
 import os
 import tarfile
 import requests
@@ -51,8 +51,8 @@ class GetData(object):
         print('Options:\n')
         for i, o in enumerate(options):
             print("{0}: {1}".format(i, o))
-        choice = input("\nPlease enter the number of the "
-                       "dataset above you wish to download:")
+        choice = eval(input("\nPlease enter the number of the "
+                       "dataset above you wish to download:"))
         return options[int(choice)]
 
     def _download_data(self, dataset_url, save_path):

@@ -23,7 +23,7 @@ def patch_gram_matrix(input, pose_map):
 	a, b, c, d = input.size() # batchsize x C x H x W
 
 	patch_gram = []
-	for i in xrange(8):
+	for i in range(8):
 		pose_map_ = pose_map[:,i] # batchsize x H x W
 		pose_map_ = pose_map_.view(batchsize, 1, c * d) # batchsize, H x W
 

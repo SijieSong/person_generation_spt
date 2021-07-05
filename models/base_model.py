@@ -68,7 +68,7 @@ class BaseModel():
         for scheduler in self.schedulers:
             scheduler.step()
         lr = self.optimizers[0].param_groups[0]['lr']
-        print('learning rate = %.7f' % lr)
+        print(('learning rate = %.7f' % lr))
 
     # return visualization images. train.py will display these images, and save the images to a html
     def get_current_visuals(self):
@@ -120,7 +120,7 @@ class BaseModel():
                 net = getattr(self, 'net' + name)
                 if isinstance(net, torch.nn.DataParallel):
                     net = net.module
-                print('loading the model from %s' % load_path)
+                print(('loading the model from %s' % load_path))
                 # if you are using PyTorch newer than 0.4 (e.g., built from
                 # GitHub source), you can remove str() on self.device
                 state_dict = torch.load(load_path, map_location=str(self.device))
@@ -140,7 +140,7 @@ class BaseModel():
                     num_params += param.numel()
                 if verbose:
                     print(net)
-                print('[Network %s] Total number of parameters : %.3f M' % (name, num_params / 1e6))
+                print(('[Network %s] Total number of parameters : %.3f M' % (name, num_params / 1e6)))
         print('-----------------------------------------------')
 
     # set requies_grad=Fasle to avoid computation
